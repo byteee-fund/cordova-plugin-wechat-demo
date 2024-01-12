@@ -18,13 +18,7 @@
     "fund.byteee.wechat": "file:../cordova-plugin-wechat"
   },
   "cordova": {
-    "plugins": {
-      "cordova-plugin-wechat": {
-        "APP_ID": "wxc04a4b5e1607572b",
-        "UNIVERSAL_LINK": " ",
-        "SDK_TYPE": "pay"
-      }
-    },
+    "plugins": {},
     "platforms": [
       "android",
       "ios"
