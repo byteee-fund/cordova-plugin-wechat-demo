@@ -17,16 +17,14 @@
  * under the License.
  */
 
-// Wait for the deviceready event before using any of Cordova's device APIs.
-// See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
+
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-  // Cordova is now initialized. Have fun!
   console.log("device ready!");
 
   // check wechat app installed
-  window.Wechat.hasWechatInstall(
+  window.Wechat.isWXAppInstalled(
     function (response) {
       document.getElementById("installResult").innerText = response;
     },
@@ -83,12 +81,18 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("stopLogButton").addEventListener("click", stopLog);
 });
 
-document.addEventListener("wechatQrcodeScanned", function () {
-  console.log("wechatQrcodeScanned!!!");
+document.addEventListener("wechat.onQrcodeScanned", function () {
+  console.log("onQrcodeScanned!!!");
 });
 
-document.addEventListener("wechat.wechatApiInit", function () {
-  console.log("wechatApiInit!!!");
+document.addEventListener("wechat.onAuthFinish", function () {
+  console.log("onAuthFinish!!!");
+});
+
+document.addEventListener("wechat.apiInit", function (event) {
+    console.log("apiInit!!!");
+    console.log(event.result);
+   document.getElementById("apiResult").innerText = event.result;
 });
 
 document.addEventListener(
@@ -100,14 +104,6 @@ document.addEventListener(
   false
 );
 
-document.addEventListener(
-  "wechatOnLog",
-  function (message) {
-    console.log(message);
-    alert(message);
-  },
-  false
-);
 
 function checkUniversalLink() {
   window.Wechat.checkUniversalLinkReady(
@@ -166,7 +162,7 @@ function sendAuthReq() {
 }
 
 function sendAuthScanReq() {
-  window.Wechat.sendAuthScanReq(
+  window.Wechat.auth(
     { scope: "111", noncestr: "2222", timestamp: "xxxx", signature: "xxxx" },
     function (response) {
       alert(JSON.stringify(response));
@@ -178,7 +174,7 @@ function sendAuthScanReq() {
 }
 
 function shareText() {
-  window.Wechat.shareTextMessage(
+  window.Wechat.shareText(
     {
       text: "test",
       scene: 0,
@@ -193,7 +189,7 @@ function shareText() {
 }
 
 function shareImage() {
-  window.Wechat.shareImageMessage(
+  window.Wechat.shareImage(
     {
       imagePath: "www/img/logo.png",
       scene: 0,
@@ -208,7 +204,7 @@ function shareImage() {
 }
 
 function shareVideo() {
-  window.Wechat.shareVideoMessage(
+  window.Wechat.shareVideo(
     {
       title: "video",
       description: "this is a video",
@@ -226,13 +222,13 @@ function shareVideo() {
 }
 
 function shareWebPage() {
-  window.Wechat.shareWebPageMessage(
+  window.Wechat.shareWebpage(
     {
       webpageUrl: "https://byteee.fund",
-      title: "webpage",
+//      title: "webpage",
       description: "this is a webpage",
       thumbPath: "www/img/logo.png",
-      scene: 0,
+//      scene: 0,
     },
     function (response) {
       alert(JSON.stringify(response));
@@ -244,7 +240,7 @@ function shareWebPage() {
 }
 
 function shareMiniProgram() {
-  window.Wechat.shareMiniProgramMessage(
+  window.Wechat.shareMiniProgram(
     {
       webpageUrl: "https://byteee.fund",
       title: "miniprogram",
@@ -266,7 +262,7 @@ function shareMiniProgram() {
 }
 
 function shareWebPage() {
-  window.Wechat.shareWebPageMessage(
+  window.Wechat.shareWebPage(
     {
       webpageUrl: "https://byteee.fund",
       title: "webpage",
