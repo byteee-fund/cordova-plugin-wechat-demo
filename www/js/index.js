@@ -1,4 +1,7 @@
 /*
+ * Copyright (c) [2024] [BSF]
+ * [https://byteee.fund]
+ * 
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -83,23 +86,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("wechat.onQrcodeScanned", function () {
   console.log("onQrcodeScanned!!!");
-});
+}, false);
 
 document.addEventListener("wechat.onAuthFinish", function () {
   console.log("onAuthFinish!!!");
-});
+}, false);
 
 document.addEventListener("wechat.apiInit", function (event) {
     console.log("apiInit!!!");
     console.log(event.result);
    document.getElementById("apiResult").innerText = event.result;
-});
+}, false);
 
 document.addEventListener(
-  "wechat.wechatOnLog",
+  "wechat.onLog",
   function (message) {
     console.log(message);
-    alert(message);
   },
   false
 );
@@ -163,7 +165,7 @@ function sendAuthReq() {
 
 function sendAuthScanReq() {
   window.Wechat.auth(
-    { scope: "111", noncestr: "2222", timestamp: "xxxx", signature: "xxxx" },
+    { scope: "111", nonceStr: "2222", timeStamp: "xxxx", signature: "xxxx" },
     function (response) {
       alert(JSON.stringify(response));
     },
@@ -311,7 +313,7 @@ function openCustomerServiceChat() {
 function sendPayReq() {
   window.Wechat.requestPayment({
     appid: "wxd930ea5d5a258f4f",
-    partnerid: "1900000109",
+    mchId: "1900000109",
     prepayid: "1101000000140415649af9fc314aa427",
     package: "Sign=WXPay",
     noncestr: "1101000000140429eb40476f8896f4c9",
