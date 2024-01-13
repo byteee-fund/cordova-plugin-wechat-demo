@@ -139,7 +139,7 @@ function stopLog() {
 }
 
 function launchWechat() {
-  window.Wechat.launchWechat(
+  window.Wechat.launchWechatApp(
     function (response) {
       alert(JSON.stringify(response));
     },
@@ -318,5 +318,11 @@ function sendPayReq() {
     timestamp: "1398746574",
     sign:
       "oR9d8PuhnIc+YZ8cBHFCwfgpaK9gd7vaRvkYD7rthRAZ/X+QBhcCYL21N7cHCTUxbQ+EAt6Uy+lwSN22f5YZvI45MLko8Pfso0jm46v5hqcVwrk6uddkGuT+Cdvu4WBqDzaDjnNa5UK3GfE1Wfl2gHxIIY5lLdUgWFts17D4WuolLLkiFZV+JSHMvH7eaLdT9N5GBovBwu5yYKUR7skR8Fu+LozcSqQixnlEZUfyE55feLOQTUYzLmR9pNtPbPsu6WVhbNHMS3Ss2+AehHvz+n64GDmXxbX++IOBvm2olHu3PsOUGRwhudhVf7UcGcunXt8cqNjKNqZLhLw4jq/xDg==",
+  },
+  function (response) {
+    alert(JSON.stringify(response));
+  },
+  function (error) {
+    alert(JSON.stringify(error));
   });
 }
