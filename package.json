@@ -14,11 +14,18 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^12.0.1",
-    "cordova-ios": "^7.0.1",
+    "cordova-ios": "^7.1.1",
+    "corodva-plugin-wechat": "file:../cordova-plugin-wechat",
     "fund.byteee.wechat": "file:../cordova-plugin-wechat"
   },
   "cordova": {
-    "plugins": {},
+    "plugins": {
+      "cordova-plugin-wechat": {
+        "APP_ID": "wxc04a4b5e1607572b",
+        "UNIVERSAL_LINK": "https://sk8xqb.xinstall.com.cn/tolink/",
+        "SDK_TYPE": "pay"
+      }
+    },
     "platforms": [
       "android",
       "ios"
